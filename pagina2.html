@@ -4,52 +4,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Página 2</title>
+  <title>Cardápio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  
-    <header>
+<header>
     <nav>
         <div class="logo-container">
-            <img class="logo" src="Imagens/Mr.Dacio_logo.png" alt="Mr. Dasio Lanches Logo">
+            <img class="logo" src="Imagens/Mr.Dacio_logo_preto.png" alt="Mr. Dasio Lanches Logo">
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="pagina2.html"class="ativo">Página 2</a>
+            <a href="pagina2.html" class="ativo">Cardápio</a>
             <a href="pagina3.html">Página 3</a>
             <a href="pagina4.html">Página 4</a>
             <a href="pagina5.html">Página 5</a>
         </div>
     </nav>
-    </header>
+</header>
 
-  <main>
-    <section class="container">
-      <h1>MR Dasio lanches </h1>
-      <h2>20 anos de tradição nas melhores Jantinhas!
-        Agora também servindo Almoço  com o mesmo sabor que conquistou você!</h2>
-      
-        <p> </p>
+<main>
+<section class="menu-section">
+    <h2>Espetinhos</h2>
+    <div class="menu-grid">
 
+        <div class="card" onclick="selecionarItem('Carne')">
+            <div class="card-body">
+                <h5>Carne</h5>
+                <p>Delicioso espeto de carne</p>
+                <span class="price">R$ 8,00</span>
+            </div>
+        </div>
 
+        <div class="card" onclick="selecionarItem('Frango')">
+            <div class="card-body">
+                <h5>Frango</h5>
+                <p>Espeto de frango temperado</p>
+                <span class="price">R$ 8,00</span>
+            </div>
+        </div>
 
+        <div class="card" onclick="selecionarItem('Coração')">
+            <div class="card-body">
+                <h5>Coração</h5>
+                <p>Coração de galinha</p>
+                <span class="price">R$ 8,00</span>
+            </div>
+        </div>
 
-      <div class="line">
-      
+        <div class="card" onclick="selecionarItem('Linguiça')">
+            <div class="card-body">
+                <h5>Linguiça</h5>
+                <p>Espeto de linguiça suína</p>
+                <span class="price">R$ 8,00</span>
+            </div>
+        </div>
 
+    </div>
+</section>
 
-        <br>
+<section class="menu-section">
+    <h2>Jantinhas</h2>
+    <div class="menu-grid">
 
-    </section>
-  </main>
+        <div class="card" onclick="selecionarItem('Jantinha com Fritas')">
+            <div class="card-body">
+                <h5>Jantinha com Fritas</h5>
+                <p>+ batata frita</p>
+                <span class="price">R$ 18,00</span>
+            </div>
+        </div>
 
-  <footer>
-    <p>&copy; 2025 Meu Site. Todos os direitos reservados.</p>
-  </footer>
+        <div class="card" onclick="selecionarItem('Jantinha Completa')">
+            <div class="card-body">
+                <h5>Jantinha Completa</h5>
+                <p>Arroz, feijão, mandioca, vinagrete e espeto</p>
+                <span class="price">R$ 16,00</span>
+            </div>
+        </div>
+    </div>
+</section>
 
+<section class="menu-section">
+    <h2>Bebidas</h2>
+    <div class="menu-grid">
+
+        <div class="card" onclick="selecionarItem('Refrigerante 350ml')">
+            <div class="card-body">
+                <h5>Refrigerante 350ml</h5>
+                <span class="price">R$ 5,00</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="selecionarItem('Água')">
+            <div class="card-body">
+                <h5>Água</h5>
+                <span class="price">R$ 3,00</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+<p>&copy; 2025 Mr. Dasio Lanches. Todos os direitos reservados.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
-
 </html>

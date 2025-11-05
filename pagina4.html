@@ -1,45 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Página 4</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedido</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <nav>
-        <div class="logo-container">
-            <img class="logo" src="Imagens/Mr.Dacio_logo.png" alt="Mr. Dasio Lanches Logo">
-        </div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="pagina2.html">Página 2</a>
-            <a href="pagina3.html">Página 3</a>
-            <a href="pagina4.html" class="ativo">Página 4</a>
-            <a href="pagina5.html">Página 5</a>
-        </div>
-    </nav>
-    </header>
+<nav>
+<div class="logo-container">
+<img class="logo" src="Imagens/Mr.Dacio_logo.png">
+</div>
 
-<main>
-  <section class="container">
-    <h2>Assunto da Página 4</h2>
-    <div class="line">
-      <div class="imagem-box">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Praia bonita">
-      </div>
-      <div class="texto-box">
-        <p>Esta é a descrição da Página 4. A imagem mostra uma praia incrível, ilustrando liberdade e relaxamento ao ar livre.</p>
-      </div>
-    </div>
-  </section>
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="pagina2.html">Cardápio</a>
+<a class="ativo" href="pagina4.html">Pedido</a>
+<a href="pagina5.html">Pagina 5</a>
+</div>
+
+</nav>
+</header>
+
+<main class="pedido-container">
+
+<h2>Finalizar Pedido</h2>
+
+<label>Item Selecionado:</label>
+<input type="text" id="item" readonly>
+
+<label>Nome:</label>
+<input type="text" id="nome" placeholder="Seu nome">
+
+<label>Endereço:</label>
+<input type="text" id="endereco" placeholder="Rua, Nº, Bairro">
+
+<label>Observação (opcional):</label>
+<textarea id="obs" placeholder="Ex: sem pimenta, bem passado..."></textarea>
+
+<button onclick="enviarWhatsApp()">Enviar Pedido ✅</button>
+
 </main>
 
-<footer>
-  <p>&copy; 2025 Meu Site. Todos os direitos reservados.</p>
-</footer>
+<script>
+// pegar item da URL
+const params = new URLSearchParams(window.location.search);
+document.getElementById("item").value = params.get("item");
+
+function enviarWhatsApp() {
+  const item = document.getElementById("item").value;
+  const nome = document.getElementById("nome").value;
+  const endereco = document.getElementById("endereco").value;
+  const obs = document.getElementById("obs").value;
+
+  const numero = "5562999999999"; // ===== SEU NÚMERO AQUI =====
+
+  const msg = `
+🍽 *Novo Pedido* 
+${item}
+
+👤 Nome: ${nome}
+📍 Endereço: ${endereco}
+📝 Obs: ${obs || "Nenhuma"}`;
+
+  window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`);
+}
+</script>
 
 </body>
 </html>

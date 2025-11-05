@@ -6,7 +6,7 @@ body {
   }
 
   header {
-    background-color: #FFFACD; /* A cor de fundo do cabeçalho */
+    background-color: #1A1A1A; /* A cor de fundo do cabeçalho */
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para o cabeçalho */
 }
@@ -19,6 +19,7 @@ body {
     gap: 60px;                        /* ADICIONE esta linha (espaço entre a logo e os links) */
     max-width: 1200px;
     margin: 0 auto;
+
 }
 
 .logo-container {
@@ -37,7 +38,7 @@ body {
 }
 
 nav a {
-    color: #2C2C88;
+    color: #FFFFFF;
     text-decoration: none;
     font-weight: bold;
     padding: 5px 0; /* Adiciona padding vertical para a borda inferior */
@@ -45,8 +46,8 @@ nav a {
 }
 
 nav a.ativo {
-    color: #676797; /* Cor do link ativo */
-    border-bottom: 2px solid #676797; /* Linha padrão para o link ativo */
+    color: #D3D3D3; /* Cor do link ativo */
+    border-bottom: 2px solid #D3D3D3; /* Linha padrão para o link ativo */
 }
 
 /* EFEITO ao passar o mouse em qualquer link */
@@ -78,7 +79,7 @@ nav a.ativo:hover {
   }
 
   footer {
-    background-color: #383873;
+    background-color: #B30D02;
     color: white;
     text-align: center;
     padding: 1rem;
@@ -145,7 +146,7 @@ nav a.ativo:hover {
   top: 0; left: 0;
   width: 100%;
   height: 90%;
-  background-image: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+  background-image: url(Imagens/os-diversos-tipos-de-churrasco-pelo-mundo-descubra-tudo_520x500_e787e7fc-e352-4c7e-891c-c58811b817ee.webp);
   background-size: cover;
   background-position: center;
   z-index: 1;
@@ -197,4 +198,127 @@ nav a.ativo:hover {
   height: 100%;
   object-fit: cover;
   pointer-events: none; /* Impede clique no vídeo */
+}
+/* ----- GRID DOS CARDS ----- */
+.menu-section {
+  padding: 20px;
+}
+
+.menu-section h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #8b5e34;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+/* ----- CARD ----- */
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+  transition: .25s ease;
+  border: 1px solid #e9e0d3;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* Hover */
+.card:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* ----- IMAGEM REDONDA ----- */
+.img-area {
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #f0e4cf;
+}
+
+.img-area img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Texto */
+.card h5 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 6px 0;
+  color: #5a3d1b;
+}
+
+.card p {
+  font-size: 14px;
+  color: #6f5e4b;
+  min-height: 34px;
+  margin-bottom: 6px;
+}
+
+.price, .price, .card span.price {
+  font-weight: bold;
+  color: #c42a1a;
+  font-size: 17px;
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0,0,0,0.2);
+}
+
+.pedido-container {
+  max-width: 450px;
+  margin: auto;
+  padding: 20px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #ff2e2e;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #c10000;
 }
