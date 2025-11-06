@@ -1,73 +1,153 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pedido</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pedido - Mr. Dasio Lanches</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <header>
+    <nav>
+      <div class="logo-container">
+        <img class="logo" src="Imagens/Mr.Dacio_logo_preto.png" alt="Mr. Dasio Lanches Logo" />
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="pagina2.html" class="ativo">Cardápio</a>
+        <a href="pagina3.html">História</a>
+        <a href="pagina4.html">Pedido</a>
+        <a href="pagina5.html">Contato</a>
+      </div>
+    </nav>
+  </header>
 
-<header>
-<nav>
-<div class="logo-container">
-<img class="logo" src="Imagens/Mr.Dacio_logo.png">
-</div>
+  <main>
+    <section class="container">
+      <h1>Seu Pedido</h1>
+      <div id="lista-pedidos"></div>
+      <h3 id="total"></h3>
 
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="pagina2.html">Cardápio</a>
-<a class="ativo" href="pagina4.html">Pedido</a>
-<a href="pagina5.html">Pagina 5</a>
-</div>
+      <h2>Sugestões para você:</h2>
+      <div id="sugestoes" class="menu-grid"></div>
 
-</nav>
-</header>
+      <button class="btn" onclick="confirmarPedido()">Confirmar Pedido</button>
+    </section>
+  </main>
 
-<main class="pedido-container">
+  <script>
+    const lista = document.getElementById("lista-pedidos");
+    const total = document.getElementById("total");
+    const sugestoesDiv = document.getElementById("sugestoes");
 
-<h2>Finalizar Pedido</h2>
+    const sugestoes = {
+      "Espetinho de Frango": ["Batata Frita", "Refrigerante 350ml"],
+      "Espetinho de Carne": ["Cerveja 600ml", "Mandioca"],
+      "Cerveja 600ml": ["Espetinho de Frango", "Espetinho de Carne"],
+      "Refrigerante 350ml": ["Espetinho de Frango"],
+    };
 
-<label>Item Selecionado:</label>
-<input type="text" id="item" readonly>
+    function carregarPedido() {
+      const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+      lista.innerHTML = "";
 
-<label>Nome:</label>
-<input type="text" id="nome" placeholder="Seu nome">
+      if (carrinho.length === 0) {
+        lista.innerHTML = "<p>Nenhum item adicionado. Vá até o caderno e adicione algo!</p>";
+        total.innerText = "";
+        return;
+      }
 
-<label>Endereço:</label>
-<input type="text" id="endereco" placeholder="Rua, Nº, Bairro">
+      let soma = 0;
+      carrinho.forEach((item, index) => {
+        const subtotal = item.preco * item.quantidade;
+        soma += subtotal;
 
-<label>Observação (opcional):</label>
-<textarea id="obs" placeholder="Ex: sem pimenta, bem passado..."></textarea>
+        const div = document.createElement("div");
+        div.classList.add("pedido-item");
+        div.innerHTML = `
+          <p><strong>${item.nome}</strong> - R$ ${item.preco.toFixed(2)} x 
+          <input type="number" min="1" value="${item.quantidade}" onchange="atualizarQuantidade(${index}, this.value)">
+          = R$ ${subtotal.toFixed(2)}</p>
+          <button class="btn-remover" onclick="removerItem(${index})">Remover</button>
+        `;
+        lista.appendChild(div);
+      });
 
-<button onclick="enviarWhatsApp()">Enviar Pedido ✅</button>
+      total.innerText = `Total: R$ ${soma.toFixed(2)}`;
 
-</main>
+      mostrarSugestoes(carrinho);
+    }
 
-<script>
-// pegar item da URL
-const params = new URLSearchParams(window.location.search);
-document.getElementById("item").value = params.get("item");
+    function mostrarSugestoes(carrinho) {
+      sugestoesDiv.innerHTML = "";
+      const nomes = carrinho.map(item => item.nome);
+      let recomendados = new Set();
 
-function enviarWhatsApp() {
-  const item = document.getElementById("item").value;
-  const nome = document.getElementById("nome").value;
-  const endereco = document.getElementById("endereco").value;
-  const obs = document.getElementById("obs").value;
+      nomes.forEach(nome => {
+        if (sugestoes[nome]) {
+          sugestoes[nome].forEach(s => recomendados.add(s));
+        }
+      });
 
-  const numero = "5562999999999"; // ===== SEU NÚMERO AQUI =====
+      if (recomendados.size === 0) {
+        sugestoesDiv.innerHTML = "<p>Sem sugestões no momento.</p>";
+        return;
+      }
 
-  const msg = `
-🍽 *Novo Pedido* 
-${item}
+      recomendados.forEach(nome => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+          <div class="card-body">
+            <h5>${nome}</h5>
+            <p>Experimente também!</p>
+            <button class="btn" onclick="adicionarAoPedido('${nome}', 10)">Adicionar</button>
+          </div>
+        `;
+        sugestoesDiv.appendChild(card);
+      });
+    }
 
-👤 Nome: ${nome}
-📍 Endereço: ${endereco}
-📝 Obs: ${obs || "Nenhuma"}`;
+    function atualizarQuantidade(index, novaQtd) {
+      const carrinho = JSON.parse(localStorage.getItem("carrinho"));
+      carrinho[index].quantidade = parseInt(novaQtd);
+      localStorage.setItem("carrinho", JSON.stringify(carrinho));
+      carregarPedido();
+    }
 
-  window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`);
-}
-</script>
+    function removerItem(index) {
+      const carrinho = JSON.parse(localStorage.getItem("carrinho"));
+      carrinho.splice(index, 1);
+      localStorage.setItem("carrinho", JSON.stringify(carrinho));
+      carregarPedido();
+    }
 
+    function adicionarAoPedido(nome, preco) {
+      const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+      const itemExistente = carrinho.find(item => item.nome === nome);
+      if (itemExistente) {
+        itemExistente.quantidade++;
+      } else {
+        carrinho.push({ nome, preco, quantidade: 1 });
+      }
+      localStorage.setItem("carrinho", JSON.stringify(carrinho));
+      carregarPedido();
+    }
+
+    function confirmarPedido() {
+      alert("Pedido confirmado! Obrigado pela preferência!");
+      localStorage.removeItem("carrinho");
+      carregarPedido();
+    }
+
+    window.onload = carregarPedido;
+  </script>
+
+  <footer>
+    <p>&copy; 2025 Mr. Dasio Lanches. Todos os direitos reservados.</p>
+  </footer>
 </body>
+
 </html>

@@ -71,6 +71,7 @@ nav a.ativo:hover {
     padding: 2rem;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     animation: fadeIn 1s ease;
+    border-radius: 8px;
   }
 
   .container h2, .container h1{
@@ -322,3 +323,168 @@ button {
 button:hover {
   background: #c10000;
 }
+/* === CARRINHO DE COMPRAS === */
+.pedido-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.pedido-container h2 {
+  text-align: center;
+  color: #b12704;
+  margin-bottom: 25px;
+  font-size: 26px;
+}
+
+.item-carrinho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fafafa;
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.item-carrinho strong {
+  color: #333;
+  font-size: 16px;
+}
+
+.item-carrinho small {
+  color: #555;
+  font-size: 14px;
+}
+
+.item-carrinho button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 3px 6px;
+}
+
+.item-carrinho button:hover {
+  color: #d82323;
+}
+
+.item-carrinho .remove {
+  color: red;
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.carrinho-total {
+  text-align: right;
+  font-size: 18px;
+  margin-top: 10px;
+  color: #222;
+  font-weight: bold;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  margin-top: 15px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  background: #fafafa;
+}
+
+button.enviar {
+  width: 100%;
+  background: #b12704;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 17px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button.enviar:hover {
+  background: #d82323;
+}
+
+footer {
+  background-color: #1A1A1A;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 40px;
+  font-size: 14px;
+}
+      .redes-sociais {
+        display: flex;
+        gap: 20px;
+      }
+
+      .redes-sociais a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 18px;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 10px;
+        transition: 0.3s;
+        color: white;
+        font-weight: bold;
+      }
+
+      /* Cores personalizadas */
+      .whatsapp {
+        background-color: #25d366;
+      }
+      .google {
+        background-color: #db4437;
+      }
+      .instagram {
+        background: linear-gradient(
+          45deg,
+          #f09433,
+          #e6683c,
+          #dc2743,
+          #cc2366,
+          #bc1888
+        );
+      }
+      .maps {
+        background-color: #4285f4;
+      }
+
+      /* Efeito ao passar o mouse */
+      .redes-sociais a:hover {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+      }
+
+      /* Ícones */
+      .redes-sociais i {
+        font-size: 22px;
+      }
+      h1{
+        color: black;
+    
+      }
+
+
+
