@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Caderno - Mr. Dasio Lanches</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mr. Dasio Lanches — Cardápio</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
-
 <body>
-  <header>
-    <nav>
+  <header class="topbar">
+    <nav class="nav">
       <div class="logo-container">
-        <img class="logo" src="Imagens/Mr.Dacio_logo_preto.png" alt="Mr. Dasio Lanches Logo" />
+        <a href="index.html" aria-label="Ir para a Home">
+          <img class="logo" src="Imagens/Mr.Dacio_logo_preto.png" alt="Logo Mr. Dasio Lanches"/>
+        </a>
       </div>
       <div class="nav-links">
         <a href="index.html">Home</a>
@@ -26,15 +26,15 @@
 
   <main>
     <section class="container">
-      <h1>Caderno de Itens</h1>
+      <h1>Cardápio</h1>
       <p>Veja os produtos disponíveis e adicione ao seu pedido:</p>
 
       <div class="menu-grid">
         <div class="card">
           <div class="card-body">
             <h5>Espetinho de Frango</h5>
-            <p>Suculento espetinho de frango temperado</p>
-            <span class="price">R$ 8,00</span><br />
+            <p>Suculento espetinho de frango temperado.</p>
+            <span class="price">R$ 8,00</span><br/>
             <button class="btn" onclick="adicionarAoPedido('Espetinho de Frango', 8)">Adicionar ao pedido</button>
           </div>
         </div>
@@ -42,8 +42,8 @@
         <div class="card">
           <div class="card-body">
             <h5>Espetinho de Carne</h5>
-            <p>Carne macia e bem temperada</p>
-            <span class="price">R$ 8,00</span><br />
+            <p>Carne macia e bem temperada.</p>
+            <span class="price">R$ 8,00</span><br/>
             <button class="btn" onclick="adicionarAoPedido('Espetinho de Carne', 8)">Adicionar ao pedido</button>
           </div>
         </div>
@@ -51,8 +51,8 @@
         <div class="card">
           <div class="card-body">
             <h5>Cerveja 600ml</h5>
-            <p>Bem gelada, perfeita para acompanhar</p>
-            <span class="price">R$ 12,00</span><br />
+            <p>Bem gelada, perfeita para acompanhar.</p>
+            <span class="price">R$ 12,00</span><br/>
             <button class="btn" onclick="adicionarAoPedido('Cerveja 600ml', 12)">Adicionar ao pedido</button>
           </div>
         </div>
@@ -60,8 +60,8 @@
         <div class="card">
           <div class="card-body">
             <h5>Refrigerante 350ml</h5>
-            <p>Coca-Cola, Guaraná, Fanta, Sprite</p>
-            <span class="price">R$ 5,00</span><br />
+            <p>Coca-Cola, Guaraná, Fanta, Sprite.</p>
+            <span class="price">R$ 5,00</span><br/>
             <button class="btn" onclick="adicionarAoPedido('Refrigerante 350ml', 5)">Adicionar ao pedido</button>
           </div>
         </div>
@@ -72,14 +72,9 @@
   <script>
     function adicionarAoPedido(nome, preco) {
       const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-      const itemExistente = carrinho.find((item) => item.nome === nome);
-
-      if (itemExistente) {
-        itemExistente.quantidade++;
-      } else {
-        carrinho.push({ nome, preco, quantidade: 1 });
-      }
-
+      const item = carrinho.find(i => i.nome === nome);
+      if (item) item.quantidade++;
+      else carrinho.push({ nome, preco, quantidade: 1 });
       localStorage.setItem("carrinho", JSON.stringify(carrinho));
       alert(`${nome} foi adicionado ao pedido!`);
     }
@@ -87,6 +82,7 @@
 
   <footer>
     <p>&copy; 2025 Mr. Dasio Lanches. Todos os direitos reservados.</p>
+    <p><strong>Integrantes:</strong> (preencher nomes) — <strong>Instituição:</strong> UCB</p>
   </footer>
 </body>
 </html>
