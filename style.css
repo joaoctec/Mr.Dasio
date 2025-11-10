@@ -224,3 +224,8 @@ img, video { max-width: 100%; display: block; }
   .nav { gap: 24px; }
   .nav-links { gap: 16px; flex-wrap: wrap; }
 }
+
+.lista-pedidos{
+
+  color: #1A1A1A;
+}
