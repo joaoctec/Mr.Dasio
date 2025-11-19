@@ -89,7 +89,9 @@
       const recomendados = new Set();
 
       nomes.forEach(n => {
-        if (sugestoes[n]) sugestoes[n].forEach(s => recomendados.add(s));
+        if (sugestoes[n]) {
+          sugestoes[n].forEach(s => recomendados.add(s));
+        }
       });
 
       if (!recomendados.size) {
@@ -128,8 +130,11 @@
     function adicionarAoPedido(nome, preco) {
       const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
       const item = carrinho.find(i => i.nome === nome);
-      if (item) item.quantidade++;
-      else carrinho.push({ nome, preco, quantidade: 1 });
+      if (item) {
+        item.quantidade++;
+      } else {
+        carrinho.push({ nome, preco, quantidade: 1 });
+      }
       localStorage.setItem("carrinho", JSON.stringify(carrinho));
       carregarPedido();
     }
@@ -145,7 +150,7 @@
 
   <footer>
     <p>&copy; 2025 Mr. Dasio Lanches. Todos os direitos reservados.</p>
-    <p><strong>Integrantes:</strong> João César Davi Rodrigres Carlos Augustus — <strong>Instituição:</strong> UCB</p>
+    <p><strong>Integrantes:</strong> João César Davi Rodrigues Carlos Augustus — <strong>Instituição:</strong> UCB</p>
   </footer>
 </body>
 </html>
