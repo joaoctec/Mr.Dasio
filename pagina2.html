@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+  <div class="top-info-bar">
+  <span class="phone">
+    📞 Telefone: (61) 98263-0246
+  </span>
+</div>
   <header class="topbar">
     <nav class="nav">
       <div class="logo-container">
@@ -25,63 +30,293 @@
   </header>
 
   <main>
-    <section class="container">
+       <section class="container">
       <h1>Cardápio</h1>
       <p>Veja os produtos disponíveis e adicione ao seu pedido:</p>
 
-      <div class="menu-grid">
-        <div class="card">
-          <div class="card-body">
-            <h5>Espetinho de Frango</h5>
-            <p>Suculento espetinho de frango temperado.</p>
-            <span class="price">R$ 8,00</span><br/>
-            <button class="btn" onclick="adicionarAoPedido('Espetinho de Frango', 8)">Adicionar ao pedido</button>
-          </div>
-        </div>
+      <!-- ESPETINHOS -->
+      <div class="categoria">
+        <h2>Espetinhos</h2>
+        <div class="menu-grid">
 
-        <div class="card">
-          <div class="card-body">
-            <h5>Espetinho de Carne</h5>
-            <p>Carne macia e bem temperada.</p>
-            <span class="price">R$ 8,00</span><br/>
-            <button class="btn" onclick="adicionarAoPedido('Espetinho de Carne', 8)">Adicionar ao pedido</button>
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/espetinho-carne.jpg" alt="Espetinho de carne grelhada" class="card-img">
+              <h5>Espetinho de Carne</h5>
+              <p>Delicioso espetinho de carne grelhada.</p>
+              <span class="price">R$ 8,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Espetinho de Carne', 8)">Adicionar ao pedido</button>
+            </div>
           </div>
-        </div>
 
-        <div class="card">
-          <div class="card-body">
-            <h5>Cerveja 600ml</h5>
-            <p>Bem gelada, perfeita para acompanhar.</p>
-            <span class="price">R$ 12,00</span><br/>
-            <button class="btn" onclick="adicionarAoPedido('Cerveja 600ml', 12)">Adicionar ao pedido</button>
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/espetinho-frango.jpg" alt="Espetinho de frango temperado" class="card-img">
+              <h5>Espetinho de Frango</h5>
+              <p>Saboroso espetinho de frango temperado.</p>
+              <span class="price">R$ 8,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Espetinho de Frango', 8)">Adicionar ao pedido</button>
+            </div>
           </div>
-        </div>
 
-        <div class="card">
-          <div class="card-body">
-            <h5>Refrigerante 350ml</h5>
-            <p>Coca-Cola, Guaraná, Fanta, Sprite.</p>
-            <span class="price">R$ 5,00</span><br/>
-            <button class="btn" onclick="adicionarAoPedido('Refrigerante 350ml', 5)">Adicionar ao pedido</button>
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/espetinho-coracao.jpg" alt="Coração de galinha" class="card-img">
+              <h5>Espetinho de Coração</h5>
+              <p>Coração de galinha saboroso.</p>
+              <span class="price">R$ 8,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Espetinho de Coração', 8)">Adicionar ao pedido</button>
+            </div>
           </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/espetinho-linguica.jpg" alt="Espetinho de linguiça suína" class="card-img">
+              <h5>Espetinho de Linguiça</h5>
+              <p>Linguiça suína bem assada.</p>
+              <span class="price">R$ 8,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Espetinho de Linguiça', 8)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/espetinho-queijo-coalho.jpg" alt="Espetinho de queijo coalho" class="card-img">
+              <h5>Espetinho de Queijo Coalho</h5>
+              <p>Queijo coalho bem dourado e saboroso.</p>
+              <span class="price">R$ 8,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Espetinho de Queijo Coalho', 8)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/pao-de-alho.jpg" alt="Pão de alho" class="card-img">
+              <h5>Pão de Alho</h5>
+              <p>Pão de alho crocante e saboroso.</p>
+              <span class="price">R$ 8,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Pão de Alho', 8)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- JANTINHAS -->
+      <div class="categoria">
+        <h2>Jantinhas</h2>
+        <div class="menu-grid">
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/jantinha-batata.png" alt="Jantinha com batata frita" class="card-img">
+              <h5>Jantinha c/ Batata Frita</h5>
+              <p>Arroz, feijão tropeiro, mandioca, vinagrete, 1 espetinho e batata frita.</p>
+              <span class="price">R$ 18,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Jantinha c/ Batata Frita', 18)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/jantinha-completa.jpg" alt="Jantinha completa" class="card-img">
+              <h5>Jantinha Completa</h5>
+              <p>Arroz, feijão tropeiro, mandioca, vinagrete e 1 espetinho.</p>
+              <span class="price">R$ 16,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Jantinha Completa', 16)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PORÇÕES -->
+      <div class="categoria">
+        <h2>Porções</h2>
+        <div class="menu-grid">
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/porcao-batata-frita.jpg" alt="Porção de batata frita" class="card-img">
+              <h5>Porção de Batata Frita</h5>
+              <p>Porção de batatas fritas crocantes.</p>
+              <span class="price">R$ 16,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Porção de Batata Frita', 16)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/carne-sol-mandioca.jpg" alt="Carne de sol com mandioca" class="card-img">
+              <h5>Carne de Sol com Mandioca</h5>
+              <p>Mandioca bem cozida com carne de sol.</p>
+              <span class="price">R$ 15,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Carne de Sol com Mandioca', 15)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/calabresa-fritas.jpg" alt="Calabresa acebolada com fritas" class="card-img">
+              <h5>Calabresa Acebolada com Fritas</h5>
+              <p>Calabresa acebolada com batatas fritas.</p>
+              <span class="price">R$ 29,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Calabresa Acebolada com Fritas', 29)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/frango-passarinha.jpg" alt="Frango a passarinha" class="card-img">
+              <h5>Frango a Passarinha</h5>
+              <p>Frango a passarinha bem temperado.</p>
+              <span class="price">R$ 25,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Frango a Passarinha', 25)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- REFRIGERANTES / SUCOS / ÁGUA -->
+      <div class="categoria">
+        <h2>Refrigerantes & Sucos</h2>
+        <div class="menu-grid">
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/refrigerante-350.jpg" alt="Refrigerante 350 ml" class="card-img">
+              <h5>Refrigerante 350 ml</h5>
+              <p>Coca c/ e s/ açúcar, Guaraná, Fanta, kuat, Sprite e Schweppes.</p>
+              <span class="price">R$ 5,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Refrigerante 350 ml', 5)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/refrigerante-600.jpg" alt="Refrigerante 600 ml" class="card-img">
+              <h5>Refrigerante 600 ml</h5>
+              <p>Coca c/ e s/ açúcar, Guaraná, Fanta.</p>
+              <span class="price">R$ 6,50</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Refrigerante 600 ml', 6.5)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/agua.jpg" alt="Água mineral" class="card-img">
+              <h5>Água</h5>
+              <p>Água com ou sem gás.</p>
+              <span class="price">R$ 3,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Água', 3)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/refrigerante-2l.jpg" alt="Refrigerante 2 litros" class="card-img">
+              <h5>Refrigerante 2 Litros</h5>
+              <p>Coca c/ e s/ açúcar, Guaraná, kuat ,Fanta e Sprite.</p>
+              <span class="price">R$ 9,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Refrigerante 2 Litros', 9)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/suco-natural-400.jpg" alt="Suco natural 400 ml" class="card-img">
+              <h5>Suco Natural 400 ml</h5>
+              <p>Suco de laranja natural.</p>
+              <span class="price">R$ 6,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Suco Natural 400 ml', 6)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/suco-caixinha-200.jpg" alt="Suco de caixinha 200 ml" class="card-img">
+              <h5>Suco de Caixinha 200 ml</h5>
+              <p>Sabores: Morango, maracujá, uva, pêssego, goiaba e caju.</p>
+              <span class="price">R$ 6,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Suco de Caixinha 200 ml', 6)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CERVEJAS / ENERGÉTICO -->
+      <div class="categoria">
+        <h2>Cervejas & Energético</h2>
+        <div class="menu-grid">
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/cerveja-600.jpg" alt="Cerveja 600 ml" class="card-img">
+              <h5>Cerveja 600 ml</h5>
+              <p>Heineken, Original e Duplo Malte.</p>
+              <span class="price">R$ 12,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Cerveja 600 ml', 12)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/cerveja-longneck.jpg" alt="Cerveja longneck" class="card-img">
+              <h5>Cerveja Longneck</h5>
+              <p>Heineken comum e zero, Budweiser e Smirnoff.</p>
+              <span class="price">R$ 8,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Cerveja Longneck', 8)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/cerveja-350.jpg" alt="Cerveja 350 ml" class="card-img">
+              <h5>Cerveja 350 ml</h5>
+              <p>Skol, Antarctica, Amstel, Brahma, Devassa e Original.</p>
+              <span class="price">R$ 5,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Cerveja 350 ml', 5)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img src="Imagens/energetico-redbull.jpg" alt="Energético Red Bull" class="card-img">
+              <h5>Energético Red Bull</h5>
+              <p>Clássico energético Red Bull.</p>
+              <span class="price">R$ 10,00</span><br/>
+              <button class="btn" onclick="adicionarAoPedido('Energético Red Bull', 10)">Adicionar ao pedido</button>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
+
   </main>
 
   <script>
-    function adicionarAoPedido(nome, preco) {
-      const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-      const item = carrinho.find(i => i.nome === nome);
-      if (item) {
-        item.quantidade++;
-      } else {
-        carrinho.push({ nome, preco, quantidade: 1 });
-      }
-      localStorage.setItem("carrinho", JSON.stringify(carrinho));
-      alert(`${nome} foi adicionado ao pedido!`);
+  function adicionarAoPedido(nome, preco) {
+    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    const item = carrinho.find(i => i.nome === nome);
+
+    if (item) {
+      item.quantidade++;
+    } else {
+      carrinho.push({ nome, preco, quantidade: 1 });
     }
-  </script>
+
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+    // Mostra alerta
+    alert(`${nome} foi adicionado ao pedido!`);
+
+    // Depois vai para a página 4
+    window.location.href = "pagina4.html";
+  }
+</script>
 
   <footer>
     <p>&copy; 2025 Mr. Dasio Lanches. Todos os direitos reservados.</p>

@@ -57,25 +57,40 @@ main {
   gap: 25px;
 }
 
-nav a {
+.nav-links a {
   color: #FFFFFF;
   text-decoration: none;
   font-weight: bold;
   padding: 5px 0;
   position: relative;
   transition: all 0.3s ease;
-  border-bottom: 2px solid transparent; /* linha apagada por padrão */
+  border-bottom: 2px solid transparent;
 }
 
-nav a.ativo {
+/* PÁGINA ATUAL – só aparece quando o mouse NÃO está sobre o menu */
+.nav-links a.ativo {
   color: #D3D3D3;
   border-bottom-color: #D3D3D3;
 }
 
-nav a:hover:not(.ativo) {
-  color: #D82323;
-  border-bottom-color: #D82323;
+/* HOVER – qualquer botão, inclusive o ativo, fica vermelho */
+.nav-links a:hover {
+  color: #D82323 !important;
+  border-bottom-color: #D82323 !important;
 }
+
+/* Quando o mouse estiver em cima da barra, o ativo perde o cinza */
+.nav-links:hover a.ativo {
+  color: #FFFFFF;
+  border-bottom-color: transparent;
+}
+
+/* O LOGO NÃO RECEBE EFEITO DE HOVER */
+.logo-container a:hover {
+  color: inherit;
+  border: none;
+}
+
 
 /* Conteúdo principal */
 .container {
@@ -132,26 +147,37 @@ nav a:hover:not(.ativo) {
   border-radius: 6px;
 }
 
+.container.home-fundo {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  box-shadow: none;
+  border-radius: 0;
+  background: none;
+}
+
 /* Home com imagem de fundo animada */
+/* A área de churrasco cobre a tela toda (descontando o header) */
+/* A home sempre ocupa exatos 100% da tela (sem ultrapassar) */
 .home-fundo {
   position: relative;
+  height: calc(85vh - 80px); /* 80px = altura aproximada do header */
   overflow: hidden;
-  min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   text-align: center;
-  padding: 0;
   margin: 0;
-  border-radius: 8px;
+  padding: 0;
+  border-radius: 0;
 }
 
 .home-fundo::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("Imagens/os-diversos-tipos-de-churrasco-pelo-mundo-descubra-tudo_520x500_e787e7fc-e352-4c7e-891c-c58811b817ee.webp");
+  background-image: url("Imagens/tela.png");
   background-size: cover;
   background-position: center;
   z-index: 1;
@@ -238,6 +264,24 @@ nav a:hover:not(.ativo) {
   margin-bottom: 6px;
 }
 
+/* Imagem dentro dos cards de produto */
+.card-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Blocos de categoria do cardápio */
+.categoria {
+  margin-top: 2rem;
+}
+
+.categoria h2 {
+  margin-bottom: 0.8rem;
+  color: #ffd38a;
+}
 .price {
   font-weight: bold;
   color: #c42a1a;
@@ -396,4 +440,54 @@ video {
     gap: 16px;
     flex-wrap: wrap;
   }
+}
+
+.qty-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0 4px;
+}
+
+.qty-btn {
+  background: #ff2e2e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.qty-btn:hover {
+  background: #c10000;
+}
+
+.item-carrinho input[type="number"] {
+  width: 60px;
+  text-align: center;
+}
+
+.top-info-bar {
+  width: 100%;
+  background-color: #2c2c2c;   /* mesma cor da barra do Fogo Campeiro */
+  color: #ffffff;
+  font-size: 14px;
+  padding: 5px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.top-info-bar .phone {
+  font-family: Arial, sans-serif;
+  opacity: 0.9;
+}
+
+.top-info-bar .phone:hover {
+  opacity: 1;
 }

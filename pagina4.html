@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+  <div class="top-info-bar">
+  <span class="phone">
+    📞 Telefone: (61) 98263-0246
+  </span>
+</div>
   <header class="topbar">
     <nav class="nav">
       <div class="logo-container">
@@ -25,30 +30,58 @@
   </header>
 
   <main>
-    <section class="container">
+    
+   
+
+    <section class="container"> 
+      
       <h1>Seu Pedido</h1>
       <div class="lista-pedidos" id="lista-pedidos" aria-live="polite"></div>
       <h3 id="total"></h3>
-
+      
+      <button class="btn" onclick="confirmarPedido()">Confirmar Pedido</button>
       <h2>Sugestões para você</h2>
       <div id="sugestoes" class="menu-grid"></div>
 
       <br>
-      <button class="btn" onclick="confirmarPedido()">Confirmar Pedido</button>
+      
     </section>
   </main>
 
-  <script>
+   <script>
     const lista = document.getElementById("lista-pedidos");
     const total = document.getElementById("total");
     const sugestoesDiv = document.getElementById("sugestoes");
 
-    const sugestoes = {
-      "Espetinho de Frango": ["Batata Frita", "Refrigerante 350ml"],
-      "Espetinho de Carne": ["Cerveja 600ml", "Mandioca"],
-      "Cerveja 600ml": ["Espetinho de Frango", "Espetinho de Carne"],
-      "Refrigerante 350ml": ["Espetinho de Frango"]
-    };
+    // Catálogo completo de produtos (mesmos nomes e preços do cardápio)
+    const produtos = [
+      { nome: "Espetinho de Carne", preco: 8, imagem: "Imagens/espetinho-carne.jpg" },
+      { nome: "Espetinho de Frango", preco: 8, imagem: "Imagens/espetinho-frango.jpg" },
+      { nome: "Espetinho de Coração", preco: 8, imagem: "Imagens/espetinho-coracao.jpg" },
+      { nome: "Espetinho de Linguiça", preco: 8, imagem: "Imagens/espetinho-linguica.jpg" },
+      { nome: "Espetinho de Queijo Coalho", preco: 8, imagem: "Imagens/espetinho-queijo-coalho.jpg" },
+      { nome: "Pão de Alho", preco: 8, imagem: "Imagens/pao-de-alho.jpg" },
+
+      { nome: "Jantinha c/ Batata Frita", preco: 18, imagem: "Imagens/jantinha-batata.png" },
+      { nome: "Jantinha Completa", preco: 16, imagem: "Imagens/jantinha-completa.jpg" },
+
+      { nome: "Porção de Batata Frita", preco: 16, imagem: "Imagens/porcao-batata-frita.jpg" },
+      { nome: "Carne de Sol com Mandioca", preco: 15, imagem: "Imagens/carne-sol-mandioca.jpg" },
+      { nome: "Calabresa Acebolada com Fritas", preco: 29, imagem: "Imagens/calabresa-fritas.jpg" },
+      { nome: "Frango a Passarinha", preco: 25, imagem: "Imagens/frango-passarinha.jpg" },
+
+      { nome: "Refrigerante 350 ml", preco: 5, imagem: "Imagens/refrigerante-350.jpg" },
+      { nome: "Refrigerante 600 ml", preco: 6.5, imagem: "Imagens/refrigerante-600.jpg" },
+      { nome: "Água", preco: 3, imagem: "Imagens/agua.jpg" },
+      { nome: "Refrigerante 2 Litros", preco: 9, imagem: "Imagens/refrigerante-2l.jpg" },
+      { nome: "Suco Natural 400 ml", preco: 6, imagem: "Imagens/suco-natural-400.jpg" },
+      { nome: "Suco de Caixinha 200 ml", preco: 6, imagem: "Imagens/suco-caixinha-200.jpg" },
+
+      { nome: "Cerveja 600 ml", preco: 12, imagem: "Imagens/cerveja-600.jpg" },
+      { nome: "Cerveja Longneck", preco: 8, imagem: "Imagens/cerveja-longneck.jpg" },
+      { nome: "Cerveja 350 ml", preco: 5, imagem: "Imagens/cerveja-350.jpg" },
+      { nome: "Energético Red Bull", preco: 10, imagem: "Imagens/energetico-redbull.jpg" }
+    ];
 
     function carregarPedido() {
       const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
@@ -69,13 +102,19 @@
         const div = document.createElement("div");
         div.classList.add("item-carrinho");
         div.innerHTML = `
-          <strong>${item.nome}</strong>
-          <small>R$ ${item.preco.toFixed(2)} x 
-            <input aria-label="Quantidade de ${item.nome}" type="number" min="1" value="${item.quantidade}" onchange="atualizarQuantidade(${index}, this.value)">
-            = R$ ${subtotal.toFixed(2)}
-          </small>
-          <button aria-label="Remover ${item.nome}" class="remove" onclick="removerItem(${index})">✕</button>
-        `;
+  <strong>${item.nome}</strong>
+  <small>
+    R$ ${item.preco.toFixed(2)} x 
+    <span class="qty-controls">
+      <button class="qty-btn" onclick="diminuirQuantidade(${index})">−</button>
+      <input aria-label="Quantidade de ${item.nome}" type="number" min="1" value="${item.quantidade}"
+             onchange="atualizarQuantidade(${index}, this.value)">
+      <button class="qty-btn" onclick="aumentarQuantidade(${index})">+</button>
+    </span>
+    = R$ ${subtotal.toFixed(2)}
+  </small>
+  <button aria-label="Remover ${item.nome}" class="remove" onclick="removerItem(${index})">✕</button>
+`;
         lista.appendChild(div);
       });
 
@@ -83,30 +122,46 @@
       mostrarSugestoes(carrinho);
     }
 
+function aumentarQuantidade(index) {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  if (!carrinho[index]) return;
+  carrinho[index].quantidade = (carrinho[index].quantidade || 1) + 1;
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  carregarPedido();
+}
+
+function diminuirQuantidade(index) {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  if (!carrinho[index]) return;
+  const novaQtd = Math.max(1, (carrinho[index].quantidade || 1) - 1); // nunca deixa 0
+  carrinho[index].quantidade = novaQtd;
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  carregarPedido();
+}
+
+
+    // Agora mostra TODA a lista de produtos (menos os que já estão no carrinho)
     function mostrarSugestoes(carrinho) {
       sugestoesDiv.innerHTML = "";
-      const nomes = carrinho.map(i => i.nome);
-      const recomendados = new Set();
 
-      nomes.forEach(n => {
-        if (sugestoes[n]) {
-          sugestoes[n].forEach(s => recomendados.add(s));
-        }
-      });
+      const nomesNoCarrinho = carrinho.map(i => i.nome);
+      const recomendados = produtos.filter(p => !nomesNoCarrinho.includes(p.nome));
 
-      if (!recomendados.size) {
+      if (!recomendados.length) {
         sugestoesDiv.innerHTML = "<p>Sem sugestões no momento.</p>";
         return;
       }
 
-      recomendados.forEach(nome => {
+      recomendados.forEach(prod => {
         const card = document.createElement("div");
         card.classList.add("card");
         card.innerHTML = `
           <div class="card-body">
-            <h5>${nome}</h5>
+            <img src="${prod.imagem}" alt="${prod.nome}" class="card-img">
+            <h5>${prod.nome}</h5>
             <p>Experimente também!</p>
-            <button class="btn" onclick="adicionarAoPedido('${nome}', 10)">Adicionar</button>
+            <span class="price">R$ ${prod.preco.toFixed(2)}</span><br/>
+            <button class="btn" onclick="adicionarAoPedido('${prod.nome}', ${prod.preco})">Adicionar</button>
           </div>
         `;
         sugestoesDiv.appendChild(card);
@@ -139,11 +194,47 @@
       carregarPedido();
     }
 
-    function confirmarPedido() {
-      alert("Pedido confirmado! Obrigado pela preferência!");
-      localStorage.removeItem("carrinho");
-      carregarPedido();
-    }
+
+
+const numeroWhatsApp = "5561982630246"; 
+
+
+  function confirmarPedido() {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+  // Carrinho vazio → alerta + vai para o cardápio
+  if (carrinho.length === 0) {
+    alert("Seu carrinho está vazio.\nAdicione algum item antes de confirmar o pedido!");
+    window.location.href = "pagina2.html";
+    return;
+  }
+
+  // Monta o texto do pedido
+  let mensagem = "Olá, gostaria de fazer um pedido no Mr. Dasio Lanches:\n\n";
+  let soma = 0;
+
+  carrinho.forEach(item => {
+    const subtotal = item.preco * item.quantidade;
+    soma += subtotal;
+    mensagem += `${item.quantidade}x ${item.nome} - R$ ${subtotal.toFixed(2)}\n`;
+  });
+
+  mensagem += `\nTotal: R$ ${soma.toFixed(2)}\n\n`;
+  mensagem += "Por favor, confirme o tempo de preparo. 🙏";
+
+  // Codifica o texto pra URL (isso evita travar por causa de acento, espaço, etc.)
+  const mensagemCodificada = encodeURIComponent(mensagem);
+
+  // Link oficial da API do WhatsApp (funciona em celular, PC, Web, etc.)
+  const urlWhats = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensagemCodificada}`;
+
+  // Navega para o WhatsApp (o navegador abre e daí chama o app, se tiver instalado)
+  window.location.href = urlWhats;
+
+  // Limpa o carrinho depois que mandou o pedido
+  localStorage.removeItem("carrinho");
+}
+
 
     window.onload = carregarPedido;
   </script>
