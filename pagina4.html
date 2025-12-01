@@ -8,10 +8,11 @@
 </head>
 <body>
   <div class="top-info-bar">
-  <span class="phone">
-    📞 Telefone: (61) 98263-0246
-  </span>
-</div>
+    <span class="phone">
+      📞 Telefone: (61) 98263-0246
+    </span>
+  </div>
+
   <header class="topbar">
     <nav class="nav">
       <div class="logo-container">
@@ -30,25 +31,22 @@
   </header>
 
   <main>
-    
-   
-
-    <section class="container"> 
-      
+    <section class="container">
       <h1>Seu Pedido</h1>
+
       <div class="lista-pedidos" id="lista-pedidos" aria-live="polite"></div>
       <h3 id="total"></h3>
-      
+
       <button class="btn" onclick="confirmarPedido()">Confirmar Pedido</button>
+
       <h2>Sugestões para você</h2>
       <div id="sugestoes" class="menu-grid"></div>
 
       <br>
-      
     </section>
   </main>
 
-   <script>
+  <script>
     const lista = document.getElementById("lista-pedidos");
     const total = document.getElementById("total");
     const sugestoesDiv = document.getElementById("sugestoes");
@@ -90,11 +88,12 @@
       if (carrinho.length === 0) {
         lista.innerHTML = "<p>Nenhum item adicionado. Vá ao <a href='pagina2.html'>Cardápio</a> e adicione algo!</p>";
         total.innerText = "";
-        sugestoesDiv.innerHTML = "<p>Sem sugestões no momento.</p>";
+        sugestoesDiv.innerHTML = "<p>Nenhum item adicionado no momento.</p>";
         return;
       }
 
       let soma = 0;
+
       carrinho.forEach((item, index) => {
         const subtotal = item.preco * item.quantidade;
         soma += subtotal;
@@ -102,19 +101,19 @@
         const div = document.createElement("div");
         div.classList.add("item-carrinho");
         div.innerHTML = `
-  <strong>${item.nome}</strong>
-  <small>
-    R$ ${item.preco.toFixed(2)} x 
-    <span class="qty-controls">
-      <button class="qty-btn" onclick="diminuirQuantidade(${index})">−</button>
-      <input aria-label="Quantidade de ${item.nome}" type="number" min="1" value="${item.quantidade}"
-             onchange="atualizarQuantidade(${index}, this.value)">
-      <button class="qty-btn" onclick="aumentarQuantidade(${index})">+</button>
-    </span>
-    = R$ ${subtotal.toFixed(2)}
-  </small>
-  <button aria-label="Remover ${item.nome}" class="remove" onclick="removerItem(${index})">✕</button>
-`;
+          <strong>${item.nome}</strong>
+          <small>
+            R$ ${item.preco.toFixed(2)} x 
+            <span class="qty-controls">
+              <button class="qty-btn" onclick="diminuirQuantidade(${index})">−</button>
+              <input aria-label="Quantidade de ${item.nome}" type="number" min="1" value="${item.quantidade}"
+                     onchange="atualizarQuantidade(${index}, this.value)">
+              <button class="qty-btn" onclick="aumentarQuantidade(${index})">+</button>
+            </span>
+            = R$ ${subtotal.toFixed(2)}
+          </small>
+          <button aria-label="Remover ${item.nome}" class="remove" onclick="removerItem(${index})">✕</button>
+        `;
         lista.appendChild(div);
       });
 
@@ -122,23 +121,22 @@
       mostrarSugestoes(carrinho);
     }
 
-function aumentarQuantidade(index) {
-  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-  if (!carrinho[index]) return;
-  carrinho[index].quantidade = (carrinho[index].quantidade || 1) + 1;
-  localStorage.setItem("carrinho", JSON.stringify(carrinho));
-  carregarPedido();
-}
+    function aumentarQuantidade(index) {
+      const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+      if (!carrinho[index]) return;
+      carrinho[index].quantidade = (carrinho[index].quantidade || 1) + 1;
+      localStorage.setItem("carrinho", JSON.stringify(carrinho));
+      carregarPedido();
+    }
 
-function diminuirQuantidade(index) {
-  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-  if (!carrinho[index]) return;
-  const novaQtd = Math.max(1, (carrinho[index].quantidade || 1) - 1); // nunca deixa 0
-  carrinho[index].quantidade = novaQtd;
-  localStorage.setItem("carrinho", JSON.stringify(carrinho));
-  carregarPedido();
-}
-
+    function diminuirQuantidade(index) {
+      const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+      if (!carrinho[index]) return;
+      const novaQtd = Math.max(1, (carrinho[index].quantidade || 1) - 1); // nunca deixa 0
+      carrinho[index].quantidade = novaQtd;
+      localStorage.setItem("carrinho", JSON.stringify(carrinho));
+      carregarPedido();
+    }
 
     // Agora mostra TODA a lista de produtos (menos os que já estão no carrinho)
     function mostrarSugestoes(carrinho) {
@@ -148,7 +146,7 @@ function diminuirQuantidade(index) {
       const recomendados = produtos.filter(p => !nomesNoCarrinho.includes(p.nome));
 
       if (!recomendados.length) {
-        sugestoesDiv.innerHTML = "<p>Sem sugestões no momento.</p>";
+        sugestoesDiv.innerHTML = "<p>Nenhum item adicionado no momento.</p>";
         return;
       }
 
@@ -194,17 +192,14 @@ function diminuirQuantidade(index) {
       carregarPedido();
     }
 
+    const numeroWhatsApp = "5561982630246";
 
-
-const numeroWhatsApp = "5561982630246"; 
-
-
-  function confirmarPedido() {
+   function confirmarPedido() {
   const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
   // Carrinho vazio → alerta + vai para o cardápio
   if (carrinho.length === 0) {
-    alert("Seu carrinho está vazio.\nAdicione algum item antes de confirmar o pedido!");
+    alert("Nenhum item adicionado.\nVá ao Cardápio e adicione algo!");
     window.location.href = "pagina2.html";
     return;
   }
@@ -222,20 +217,18 @@ const numeroWhatsApp = "5561982630246";
   mensagem += `\nTotal: R$ ${soma.toFixed(2)}\n\n`;
   mensagem += "Por favor, confirme o tempo de preparo. 🙏";
 
-  // Codifica o texto pra URL (isso evita travar por causa de acento, espaço, etc.)
   const mensagemCodificada = encodeURIComponent(mensagem);
-
-  // Link oficial da API do WhatsApp (funciona em celular, PC, Web, etc.)
   const urlWhats = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensagemCodificada}`;
 
-  // Navega para o WhatsApp (o navegador abre e daí chama o app, se tiver instalado)
-  window.location.href = urlWhats;
+  // Abre o WhatsApp em nova aba
+  window.open(urlWhats, "_blank");
 
-  // Limpa o carrinho depois que mandou o pedido
+  // Limpa o carrinho
   localStorage.removeItem("carrinho");
+
+  // 🔁 Atualiza a tela para o estado "Nenhum item adicionado"
+  carregarPedido();
 }
-
-
     window.onload = carregarPedido;
   </script>
 

@@ -491,3 +491,31 @@ video {
 .top-info-bar .phone:hover {
   opacity: 1;
 }
+
+/* Espaçamento entre as duas fotos da coluna esquerda */
+.imagem-box img {
+  margin-bottom: 10px;
+}
+
+/* Bloco com a foto do Dasio + texto ao lado */
+.dono {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+/* Foto do Dasio redonda/bonita */
+.dono img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Texto ao lado da foto */
+.dono p {
+  margin: 0;
+  text-align: justify;
+}
